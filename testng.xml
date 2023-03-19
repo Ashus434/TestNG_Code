@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Loan Department">                      <!--LoanDepartment is Suite Name-->
+
+      <listeners>
+	       <listener class-name="test.Listeners"/> <!--Here we are telling to testng.xml about the Listener -->
+      </listeners>
+
+<parameter name="URL" value="qaclickacademy.com"></parameter> <!--We are declaring the parameter here.
+                                                                  URL is the name and "qaclickacademy.com" it's value. 
+                                                                  And we are passing the URL in one method of day6 class. 
+                                                                  This parameters concept   we can use both at suite level
+                                                                  & test module level.(as per the requirement) 
+                                                                  
+                                                                  passing parameters from testng.xml is the 1st way 
+                                                                  
+                                                                  @DataProvider is the second way of passing parameters to
+                                                                  test methods --> 
+                                                                  
+  <parameter name="Key" value="125487"></parameter> 
+  <test thread-count="5" name="Personal Loan">      <!--This is Test Module/Folder Name-->
+    <classes>
+       <class name="test.day1"/>           <!--This is Test case Name, The .java classes are the test cases, So we are calling those here by the help of package name(test)-->
+       <class name="test.day2"/>           <!--This is Test case Name, The .java classes are the test cases, So we are calling those here by the help of package name(test)-->
+       
+       
+       <class name="test.day3">
+		<methods>
+		  <include name = "WebLoginPersonalLoan"/> <!--It will include only the "WebLoginCarLoan" method of day3 class, during execution, rest methods will be excluded-->
+		</methods>
+	   </class>
+	   
+	   <class name="test.day6"/> 
+	   
+    </classes>
+  </test> <!-- Test -->
+  
+  
+  
+  
+  
+   <test thread-count="5" name="HomeLoan">  
+     <classes>
+        <class name="test.day4">  
+         <methods>
+			<exclude name = "MobileLoginHomeLoan"/> <!--It will exclude "MobileLoginHomeLoan" method of day4 class, during execution-->
+		 </methods>
+		</class>
+		<class name="test.day5">  
+		 <methods>
+			<exclude name = "API.*"/> <!-- During execution It will exclude those methods of day5 class, whose names started with "API". And we have written *, means after API the rest letters.-->
+		    <include name = "Mobile.*"/> <!-- During execution It will Include those methods of day5 class, whose names started with "Mobile". And we have written *, means after Mobile the rest letters.-->
+		 </methods>
+		</class>
+		
+		<class name="test.day7"/> 
+		<class name="test.day8"/> 
+		 
+     </classes>
+   </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
